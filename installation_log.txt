@@ -1,0 +1,77 @@
+eSim-2.5 Installation Log Report
+FOSSEE Summer Fellowship 2026 – Task 4
+Author: Sejal Anil Shinkar
+
+------------------------------------------------------------
+1. Environment Setup
+------------------------------------------------------------
+OS: Ubuntu 25.04 (VirtualBox)
+Initial Python Version: 3.12
+Final Python Version: 3.10
+Virtual Environment: esim-env310
+
+------------------------------------------------------------
+2. Installation Process Log
+------------------------------------------------------------
+
+Step 1: Repository Setup
+- Cloned eSim repository successfully
+- Switched to installers branch
+
+Step 2: Virtual Environment Creation
+Command:
+python3.10 -m venv esim-env310
+source esim-env310/bin/activate
+Status: SUCCESS
+
+Step 3: Dependency Installation Attempt
+Command:
+pip install -r requirements.txt
+Status: FAILED (initial attempt)
+
+Error Observed:
+- numpy build failure
+- scipy dependency resolution failure
+- distutils module missing
+
+------------------------------------------------------------
+3. Identified Issues
+------------------------------------------------------------
+
+Issue 1: Python 3.12 incompatibility
+- Cause: Unsupported scientific libraries
+
+Issue 2: Missing distutils module
+- Error: ModuleNotFoundError: distutils.msvccompiler
+
+Issue 3: numpy/scipy build failure
+- Cause: Lack of compatible prebuilt wheels
+
+------------------------------------------------------------
+4. Applied Fixes
+------------------------------------------------------------
+
+Fix 1: Python Version Downgrade
+- Installed Python 3.10
+- Recreated virtual environment
+
+Fix 2: Clean Dependency Installation
+Command:
+pip install --no-build-isolation -r requirements.txt
+Status: SUCCESS
+
+------------------------------------------------------------
+5. Verification
+------------------------------------------------------------
+Command:
+python -c "import numpy, scipy, matplotlib; print('OK')"
+
+Output:
+OK
+
+------------------------------------------------------------
+6. Final Status
+------------------------------------------------------------
+✔ Installation Successful
+✔ All dependencies resolved
+✔ Environment verified
