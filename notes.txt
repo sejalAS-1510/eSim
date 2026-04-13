@@ -1,0 +1,41 @@
+eSim-2.5 Installation Study Notes
+FOSSEE Summer Fellowship 2026 – Task 4
+Author: Sejal Anil Shinkar
+
+------------------------------------------------------------
+1. Overview
+------------------------------------------------------------
+This document summarizes key observations made during the installation of eSim-2.5 on Ubuntu 25.04. The focus was on identifying dependency conflicts, compatibility issues, and script-level limitations.
+
+------------------------------------------------------------
+2. Key Technical Observations
+------------------------------------------------------------
+
+2.1 Python Version Incompatibility
+- eSim-2.5 dependencies are not fully compatible with Python 3.12.
+- Scientific libraries such as numpy and scipy lack stable builds for Python 3.12 in older versions used by eSim.
+
+2.2 Dependency Constraints
+- numpy==1.24.4 and scipy==1.10.1 require older Python runtime support.
+- pip attempted source compilation, leading to build failures.
+
+2.3 distutils Removal Issue
+- Python 3.12 deprecated distutils module.
+- Several build scripts referenced distutils.msvccompiler, causing import errors.
+
+2.4 Virtual Environment Isolation
+- Clean virtual environment creation resolved dependency conflicts.
+- Python 3.10 provided stable compatibility.
+
+------------------------------------------------------------
+3. Key Learning Outcomes
+------------------------------------------------------------
+- Importance of Python version compatibility in scientific software.
+- Dependency pinning issues in legacy projects.
+- Role of virtual environments in isolating build failures.
+- Need for script modernization in install-eSim.sh.
+
+------------------------------------------------------------
+4. Conclusion
+------------------------------------------------------------
+Most installation issues were traced to version incompatibility between eSim dependencies and Python 3.12. Downgrading to Python 3.10 resolved major blocking issues and allowed successful installation.
